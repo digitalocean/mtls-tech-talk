@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -15,5 +16,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	log.Println("starting server")
 	http.ListenAndServe(":3001", http.HandlerFunc(handler))
 }
