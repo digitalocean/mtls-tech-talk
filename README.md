@@ -12,7 +12,7 @@ I'd like to show you how to use Vault to manage a PKI infrastructure that allows
 ## Requirements
 
 1. Three open terminals (#1, #2, and #3)
-2. [go v1.15](https://golang.org/dl/)
+2. [go v1.16](https://golang.org/dl/)
 3. [curl](https://curl.haxx.se/)
 4. [jq](https://stedolan.github.io/jq/)
 5. [openssl](https://www.openssl.org/)
