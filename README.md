@@ -7,7 +7,7 @@ Managing a PKI (public key infrastructure) and provisioning of client and server
 
 In the last few years products like HashiCorp's [Vault](https://www.vaultproject.io/) have make managing a PKI easier, and have provided reasonable APIs to make issuing certificates a straight-forward process. Language libraries have evolved to allow developers to easily configure TLS for clients and servers. Tools have also evolved to make the conversion between certificate formats easier (for example [pemToJks](https://github.com/tomcz/pemToJks)).
 
-I'd like to show you how to use Vault to manage a PKI infrastructure that allows for mTLS between golang-based clients and servers. All the following code is also available for you to explore on its [GitHub project](https://github.com/digitalocean/mtls-tech-talk).
+I'd like to show you how to use Vault to manage a PKI infrastructure that allows for mTLS between golang-based clients and servers. All the following code is also available for you to explore in this repository.
 
 ## Requirements
 
