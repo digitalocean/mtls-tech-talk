@@ -15,6 +15,7 @@ I'd like to show you how to use Vault to manage a PKI infrastructure that allows
 2. [go v1.15](https://golang.org/dl/)
 3. [curl](https://curl.haxx.se/)
 4. [jq](https://stedolan.github.io/jq/)
+5. [openssl](https://www.openssl.org/)
 
 ## Set up Vault
 
