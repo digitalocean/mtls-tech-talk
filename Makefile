@@ -133,6 +133,7 @@ setup-root-ca: | target/vault
 		key_type=rsa \
 		key_bits=2048
 	jq -r '.data.certificate' target/root.json > target/root.crt
+	openssl x509 -text -noout -in target/root.crt
 
 .PHONY: issue-server-cert
 issue-server-cert: | target/vault
@@ -144,6 +145,7 @@ issue-server-cert: | target/vault
 		> target/server.json
 	jq -r '.data.certificate' target/server.json > target/server.crt
 	jq -r '.data.private_key' target/server.json > target/server.pem
+	openssl x509 -text -noout -in target/server.crt
 
 .PHONY: issue-alice-cert
 issue-alice-cert: | target/vault
@@ -153,6 +155,7 @@ issue-alice-cert: | target/vault
 		> target/alice.json
 	jq -r '.data.certificate' target/alice.json > target/alice.crt
 	jq -r '.data.private_key' target/alice.json > target/alice.pem
+	openssl x509 -text -noout -in target/alice.crt
 
 .PHONY: issue-bob-cert
 issue-bob-cert: | target/vault
@@ -162,6 +165,7 @@ issue-bob-cert: | target/vault
 		> target/bob.json
 	jq -r '.data.certificate' target/bob.json > target/bob.crt
 	jq -r '.data.private_key' target/bob.json > target/bob.pem
+	openssl x509 -text -noout -in target/bob.crt
 
 .PHONY: setup-alice-ca
 setup-alice-ca: | target/vault
@@ -196,6 +200,7 @@ setup-alice-ca: | target/vault
 		max_ttl="720h" \
 		key_type=rsa \
 		key_bits=2048
+	openssl x509 -text -noout -in target/alice-ca.crt
 
 .PHONY: setup-bob-ca
 setup-bob-ca: | target/vault
@@ -230,6 +235,7 @@ setup-bob-ca: | target/vault
 		max_ttl="720h" \
 		key_type=rsa \
 		key_bits=2048
+	openssl x509 -text -noout -in target/bob-ca.crt
 
 .PHONY: issue-alice-pki-cert
 issue-alice-pki-cert: | target/vault
@@ -240,6 +246,7 @@ issue-alice-pki-cert: | target/vault
 	jq -r '.data.certificate' target/alice-pki.json > target/alice-pki.crt
 	jq -r '.data.issuing_ca' target/alice-pki.json >> target/alice-pki.crt
 	jq -r '.data.private_key' target/alice-pki.json > target/alice-pki.pem
+	openssl x509 -text -noout -in target/alice-pki.crt
 
 .PHONY: issue-bob-pki-cert
 issue-bob-pki-cert: | target/vault
@@ -250,3 +257,4 @@ issue-bob-pki-cert: | target/vault
 	jq -r '.data.certificate' target/bob-pki.json > target/bob-pki.crt
 	jq -r '.data.issuing_ca' target/bob-pki.json >> target/bob-pki.crt
 	jq -r '.data.private_key' target/bob-pki.json > target/bob-pki.pem
+	openssl x509 -text -noout -in target/bob-pki.crt
