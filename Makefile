@@ -92,7 +92,7 @@ endif
 
 .PHONY: run-vault
 run-vault: | target/vault
-	./target/vault server -dev -dev-root-token-id="root"
+	bash -c 'trap "rm -f ~/.vault-token" EXIT; ./target/vault server -dev -dev-root-token-id="root"'
 
 .PHONY: setup-pki
 setup-pki: setup-root-pki setup-alice-pki setup-bob-pki
