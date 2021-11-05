@@ -126,6 +126,8 @@ This creates two files: `target/alice.crt` which contains Alice's public certifi
 
 The server presents its own TLS certificate to clients during the HTTPS handshake, and requires that a client must present its own certificate during the handshake. It validates a client's certificate to ensure that it has been signed by our root CA.
 
+[cmd/mtls-service/main.go](/digitalocean/mtls-tech-talk/blob/main/cmd/mtls-service/main.go)
+
 ```go
 package main
 
@@ -191,6 +193,8 @@ func main() {
 ### Create a golang HTTPS client that presents its own TLS certificate
 
 The client presents its own TLS certificate to a server during the HTTPS handshake, and validates the server's certificate to ensure that it has been signed by our root CA.
+
+[cmd/mtls-client/main.go](/digitalocean/mtls-tech-talk/blob/main/cmd/mtls-client/main.go)
 
 ```go
 package main
@@ -464,6 +468,8 @@ There are three common options:
 
 Create a Nginx configuration file to only permit Alice's Common Name:
 
+[nginx.conf](/digitalocean/mtls-tech-talk/blob/main/nginx.conf)
+
 ```
 worker_processes  1;
 error_log  stderr;
@@ -546,6 +552,8 @@ Better than failing the TLS handshake.
 
 Create a HAProxy configuration file to only permit Alice's Common Name:
 
+[haproxy.conf](/digitalocean/mtls-tech-talk/blob/main/haproxy.conf)
+
 ```
 global
     maxconn 256
@@ -603,6 +611,8 @@ Better than failing the TLS handshake, less config than Nginx, but not really al
 #### Option 2:
 
 Go's `net/http` TLS configuration allows us to abort the TLS handshake after its standard verification steps have completed. We can use that to reject non-Alice certificates.
+
+[cmd/verify-connection/main.go](/digitalocean/mtls-tech-talk/blob/main/cmd/verify-connection/main.go)
 
 ```go
 package main
@@ -703,6 +713,8 @@ Oops, this is a bit worse than a proxy. We must be able to do better.
 #### Option 3:
 
 We can let the TLS connection get established, then use middleware to inspect the request and see who has connected to us. This allows us to return more informative errors to clients rather than just killing the HTTPS handshake.
+
+[cmd/verify-middleware](/digitalocean/mtls-tech-talk/tree/main/cmd/verify-middleware)
 
 ```go
 package main
