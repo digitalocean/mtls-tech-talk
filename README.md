@@ -714,7 +714,7 @@ Oops, this is a bit worse than a proxy. We must be able to do better.
 
 We can let the TLS connection get established, then use middleware to inspect the request and see who has connected to us. This allows us to return more informative errors to clients rather than just killing the HTTPS handshake.
 
-[cmd/verify-middleware](https://github.com/digitalocean/mtls-tech-talk/tree/main/cmd/verify-middleware)
+[cmd/verify-middleware/main.go](https://github.com/digitalocean/mtls-tech-talk/tree/main/cmd/verify-middleware/main.go)
 
 ```go
 package main
